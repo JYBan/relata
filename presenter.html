@@ -1,0 +1,70 @@
+<?php
+	session_start();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RELATA :: 고갱님의 데이터를 모아드림 - Team17</title>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/frameLayout.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="js/custom.js"></script>
+</head>
+<body>
+
+
+		<!-- UPPER MENU BAR -->
+		<nav class="navbar navbar-fixed-top" style="min-height: 30px;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"><img src="src/logo.png"></a>
+					<h4>제출자</h4>
+					<form action='php/logout.php' method='post' class="navbar-form navbar-right">
+						<button type='submit' class="btn btn-default btn-sm">logout</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+
+
+	<!-- BODY -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<!-- SIDE BAR -->
+					<p> <?php echo $_SESSION['UserID'] ?> </p>
+					<button class="btn btn-xs btn-default" onclick="editPopUp()"><span class="glyphicon glyphicon-pencil"></span></button>
+					<hr class="bar_side">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="#">현재메뉴 예시<span class="sr-only">(current)</span></a></li>
+						<li><a href="#">메뉴1</a></li>
+						<li><a href="#">메뉴2</a></li>
+						<li><a href="#">메뉴3</a></li>
+						<li><a href="#">메뉴4</a></li>
+						
+					</ul>
+				</div>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<!-- HERE COMES CONTENTS -->
+				</div>
+			</div>
+			<!-- body end -->
+		</div>
+
+
+		<footer class="footer">
+			<p class="text-muted">copyright © 2015 by team yonseInfo</p>
+		</footer>
+
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Team17::Relata</title>
+		<meta charset="utf-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="js/custom.js"></script>
+		<style type="text/css">
+			.jumbotron{
+
+				padding-bottom: 12vh;
+			}
+			.footer {
+			  width: 100%;
+			  height: 50px;
+			}
+			img{
+				max-width: 90%;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="jumbotron" style="background-color: #4285f4">
+			<h1 style="margin-left: 150px;">TEAM17!</h1> 
+			<p style="margin-left: 250px;">Collecting data from various sources with proven quality<br>Powered by Relata</p> 
+			<center style="margin-top: 12vh;">
+				<form action="php/main.php" method='post' class='form-group form-inline' style="display:inline;">
+					<label for='id' class='sr-only'>ID : </label>
+					<input type='text' placeholder='ID' class='form-control input-sm' id='id' name='id'/>
+					<label for='pwd' class='sr-only'>Password : </label>
+					<input type='password' placeholder='Password' class='form-control input-sm' id='pwd' name='pwd'/>
+					<button type="submit" class="btn btn-default btn-sm">Login</button>
+				</form>
+					<button class="btn btn-default btn-sm" onclick="registerPopUp()">SignUp</button>
+			</center>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4" style="margin-top: 15px;">
+					<img src="src/Database.png">
+				</div>
+				<div class="col-md-4">
+					<img src="src/Data.jpg">
+				</div>
+				<div class="col-md-4">
+					<img src="src/MySQL.png">
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="container">
+				<center class="text-muted">copyright © 2015 by Relata</center>
+			</div>
+		</footer>
+	</body>
+</html>

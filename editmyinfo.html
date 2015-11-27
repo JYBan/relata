@@ -1,0 +1,142 @@
+<?php
+session_start();
+$servername = "localhost";
+$username = "team17";
+$password = "dbteam17";
+$dbname = "team17";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+mysqli_set_charset($conn,"utf8");
+
+if (mysqli_connect_error()) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+$sql = "SELECT Password, Name, Sex, PhoneNum, BirthDate, Address, Age, Role FROM MEMBER WHERE UserID='".$_SESSION['UserID']."'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+   $row = $result->fetch_assoc();
+   $year = split('-', $row['BirthDate'])[0];
+   $month = split('-', $row['BirthDate'])[1];
+   $day = split('-', $row['BirthDate'])[2];
+}else {
+	echo "error";
+}
+
+$conn->close();
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RELATA :: 고갱님의 데이터를 모아드림 - Team17</title>
+		<meta charset="utf-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			h1{
+				margin-left: 10vh;
+				margin-bottom: 7vh;
+			}
+			.footer {
+				display: block;
+			 	width: 100%;
+				height: 50px;
+			}
+			#year, #month, #day, #age{
+				display: inline;
+			}
+			#month, #day{
+				margin-left: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Edit</h1>
+			<form action="php/editmyinfo.php" method="post" class="form-horizontal" role="form" name="register">
+				
+				<div class="form-group">
+					<label class="control-label col-xs-3" for="id">ID</label>
+					<div class="col-xs-5">
+						  <p><?php echo $_SESSION['UserID']; ?></p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-3" for="pwd">Password</label>
+					<div class="col-xs-5">
+						  <input type="password" class="form-control input-sm" id="pwd" name="pwd" 
+						  value="<?php echo $row['Password']; ?>">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-3" for="name">Name</label>
+					<div class="col-xs-5">
+						  <input type="text" class="form-control input-sm" id="name" name="name"
+						  value="<?php echo $row['Name']; ?>">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-3">Sex</label>
+					<div class="col-xs-8">
+						<label class="radio-inline"><input type="radio" name="sex" value="0" <?php if($row['Sex']=='0') echo 'checked'; ?> >남자</label>
+						<label class="radio-inline"><input type="radio" name="sex" value="1" <?php if($row['Sex']=='1') echo 'checked'; ?> >여자</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-3" for="phone">Phone</label>
+					<div class="col-xs-5">
+						  <input type="text" class="form-control input-sm" id="phone" placeholder="000-0000-0000" name='phone'
+						  value="<?php echo $row['PhoneNum']; ?>">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-3">Birthdate</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm" id="year" placeholder="yyyy" style="width:20%;" name="year"
+						value="<?php echo $year; ?>">년
+						<input type="text" class="form-control input-sm" id="month" placeholder="mm" style="width:20%;" name="month"
+						value="<?php echo $month; ?>">월
+						<input type="text" class="form-control input-sm" id="day" placeholder="dd" style="width:20%;" name="day"
+						value="<?php echo $day; ?>">일 
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-3" for="address">Address</label>
+					<div class="col-xs-8">
+						  <input type="text" class="form-control input-sm" id="address" name="address"
+						  value="<?php echo $row['Address']; ?>">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-3" for="address">Age</label>
+					<div class="col-xs-3">
+						  <input type="text" class="form-control input-sm" id="age" name="age" style="width:50%;"
+						  value="<?php echo $row['Age']; ?>"> 살
+					</div>
+				</div>
+
+				<div class="form-group"> 
+				    <div class="col-xs-offset-3 col-xs-8">
+				      <button type="submit" class="btn btn-default">Submit</button>
+				    </div>
+				</div>
+			<br>
+			<footer class="footer">
+				<div class="container">
+					<center class="text-muted">copyright © 2015 by Relata</center>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
